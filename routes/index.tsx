@@ -1,25 +1,34 @@
-import { useSignal } from "@preact/signals";
-import Counter from "../islands/Counter.tsx";
+import { FreshContext, Handlers } from "$fresh/server.ts";
+import { PageProps } from "$fresh/server.ts";
+import axios, { AxiosHeaders } from "axios";
+import { denoPlugins } from "$fresh/src/build/deps.ts";
+import { TelephoneResponse, Telefono } from "../types.ts";
 
-export default function Home() {
-  const count = useSignal(3);
+// <form method="get" action="/telephone">
+
+// const headers = new AxiosHeaders({
+//   'X-Api-Key': Deno.env.get("API_KEY"),
+// });
+
+
+// export const handler: Handlers<Telefono> = {
+
+
+//   async GET(req: Request, ctx: FreshContext<TelephoneResponse>) {
+//     const headers = {'X-Api-Key': Deno.env.get("API_KEY")}
+//     const response = await axios.get(`https://api.api-ninjas.com/v1/validatephone?number=${telefono}`, headers);
+
+//     return ctx.render(ctx.params);
+//   },
+// };
+
+export default function Page() {
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <img
-          class="my-6"
-          src="/logo.svg"
-          width="128"
-          height="128"
-          alt="the Fresh logo: a sliced lemon dripping with juice"
-        />
-        <h1 class="text-4xl font-bold">Welcome to Fresh</h1>
-        <p class="my-4">
-          Try updating this message in the
-          <code class="mx-2">./routes/index.tsx</code> file, and refresh.
-        </p>
-        <Counter count={count} />
-      </div>
-    </div>
+    <>
+      <form method="get">
+        <input type="text" name="telefono" value="" placeholder="Teléfono" />
+        <button type="submit">Enviar</button>
+      </form>
+    </>
   );
 }
